@@ -84,4 +84,50 @@ def append_round_metrics(metrics):
 
 
 def write_summary(all_metrics):
-    os.makedirs(RESULTS_DIR, exist_ok=
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    avg_acc = sum(m['avg_local_acc'] for m in all_metrics) / len(all_metrics)
+    avg_auc = sum(m['global_auc'] for m in all_metrics) / len(all_metrics)
+    avg_time = sum(m['exec_time_s'] for m in all_metrics) / len(all_metrics)
+    total_comm = sum(m['comm_overhead_kb'] for m in all_metrics)
+
+    with open(DEMO_SUMMARY, 'w') as f:
+        f.write("GovFL-AML MVP — Federated AML Compliance Demo\n")
+        f.write("==============================================\n\n")
+        f.write(f"Generated: {datetime.utcnow().isoformat()} UTC\n\n")
+        f.write("Performance Summary:\n")
+        f.write("--------------------\n")
+        f.write(f"Average Local Accuracy : {avg_acc:.3f}\n")
+        f.write(f"Average Global AUC      : {avg_auc:.3f}\n")
+        f.write(f"Total Communication     : ~{total_comm/1000:.2f} MB\n")
+        f.write(f"Average Round Time      : {avg_time:.2f} s\n\n")
+        f.write("Rounds:\n")
+        for m in all_metrics:
+            f.write(f"  Round {m['round']}: AUC={m['global_auc']}, acc={m['avg_local_acc']}, weights={m['weights']}\n")
+
+    # Copy ledger log for record
+    if os.path.exists(LEDGER_SRC):
+        shutil.copy(LEDGER_SRC, LEDGER_COPY)
+
+
+if __name__ == '__main__':
+    import argparse
+    p = argparse.ArgumentParser()
+    p.add_argument('--nodes', type=int, default=3)
+    p.add_argument('--rounds', type=int, default=3)
+    args = p.parse_args()
+
+    os.makedirs(IN_DIR, exist_ok=True)
+    init_results_csv()
+    all_metrics = []
+
+    for r in range(args.rounds):
+        record_event('RoundStarted', {'round': r})
+        print(f'[INFO] Waiting for round {r} models...')
+        metrics = aggregate_round(args.nodes, r)
+        if metrics:
+            append_round_metrics(metrics)
+            all_metrics.append(metrics)
+        time.sleep(1)
+
+    write_summary(all_metrics)
+    print('[DONE] Aggregator finished — results written to /results/')
