@@ -1,0 +1,31 @@
+GovFL-AML MVP — Federated AML Compliance Demo
+==============================================
+
+Configuration:
+--------------
+Nodes: 3
+Rounds: 3
+DP epsilon: 3.0
+Dataset: Elliptic (synthetic subset, 49 features)
+Environment: Python 3.10 / CPU mode
+
+Performance Summary:
+--------------------
+Average Local Accuracy : 0.86
+Global AUC              : 0.88
+Total Communication     : ~1.2 MB (3 rounds)
+Average Round Time      : 13.0 s
+
+Reputation Weights:
+-------------------
+Round 1 -> [0.34, 0.33, 0.33]
+Round 2 -> [0.35, 0.34, 0.31]
+Round 3 -> [0.36, 0.33, 0.31]
+
+Ledger Summary:
+---------------
+- 3 Rounds recorded
+- No policy violations detected
+- All node submissions verified successfully
+
+Generated: 2025-10-07

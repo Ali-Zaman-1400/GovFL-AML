@@ -1,0 +1,75 @@
+[
+  {
+    "timestamp": "2025-10-07T11:03:42Z",
+    "event": "RoundStarted",
+    "data": {
+      "round": 1
+    },
+    "hash": "f1e7a3c2a119df5c3f2e32cd6a89c81d8b3af734a41e..."
+  },
+  {
+    "timestamp": "2025-10-07T11:03:55Z",
+    "event": "ModelSubmitted",
+    "data": {
+      "node": 0,
+      "round": 1,
+      "acc": 0.83
+    },
+    "hash": "a4fbe61df54aa2190eb07f8914d82..."
+  },
+  {
+    "timestamp": "2025-10-07T11:04:01Z",
+    "event": "Aggregated",
+    "data": {
+      "round": 1,
+      "weights": [
+        0.34,
+        0.33,
+        0.33
+      ]
+    },
+    "hash": "8c52c3e21228a4b0e41d91..."
+  },
+  {
+    "timestamp": "2025-10-07T11:04:45Z",
+    "event": "RoundStarted",
+    "data": {
+      "round": 2
+    },
+    "hash": "c819e3b1e411a3f31adf..."
+  },
+  {
+    "timestamp": "2025-10-07T11:05:10Z",
+    "event": "Aggregated",
+    "data": {
+      "round": 2,
+      "weights": [
+        0.35,
+        0.34,
+        0.31
+      ]
+    },
+    "hash": "b6ee13ad5f56e54..."
+  },
+  {
+    "timestamp": "2025-10-07T11:06:12Z",
+    "event": "RoundStarted",
+    "data": {
+      "round": 3
+    },
+    "hash": "f7ae321c4b93c53..."
+  },
+  {
+    "timestamp": "2025-10-07T11:06:38Z",
+    "event": "Aggregated",
+    "data": {
+      "round": 3,
+      "weights": [
+        0.36,
+        0.33,
+        0.31
+      ]
+    },
+    "hash": "f22e98d34e5a29..."
+  }
+]
