@@ -1,13 +1,4 @@
-torch>=2.2.0
-torch-geometric
-pandas
+torch>=2.0.0
 numpy
 scikit-learn
-flower
-web3
-eth-account
-tenseal
-matplotlib
-seaborn
-jupyter
 pyyaml
