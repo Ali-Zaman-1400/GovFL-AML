@@ -21,7 +21,7 @@ It integrates:
 
 ## Installation
 ```bash
-git clone https://github.com/<your-username>/GovFL-AML.git
+git clone https://github.com/Ali-Zaman-1400/GovFL-AML.git
 cd GovFL-AML
 pip install -r requirements.txt
 ```
